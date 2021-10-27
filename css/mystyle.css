@@ -1,0 +1,30 @@
+body {
+  background-color: rgb(18, 32, 37);
+}
+
+h1 {
+  color: rgb(42, 130, 156);
+  margin: 40px;
+}
+
+p {
+  color: rgb(163, 231, 255);
+  margin: 20px;
+  margin-left: 80px;
+}
+
+canvas {
+  border: 3px solid green;
+  padding: 10px;
+  margin: 10px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+#debug {
+  color: red;
+}
