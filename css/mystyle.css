@@ -19,6 +19,12 @@ body {
   position: relative;
 }
 
+.container {
+  width: 45vw;
+  height: 25vw;
+  margin-top: 5vw;
+}
+
 .img-container {
   margin: 25px;
   position: relative;
@@ -36,12 +42,12 @@ body {
   margin: 0 auto;
 }
 
-.input-file {
-  max-width: 25vw;
+.file-path-wrapper {
+  width: 0px;
 }
 
-.file-path {
-  color: #bbb;
+.input-file {
+  width: 128px;
 }
 
 .row {
@@ -88,19 +94,20 @@ body {
 }
 
 #status {
-  font: 20pt bold arial;
-  color: rgb(255, 0, 0);
+  font: 16pt bold arial;
+  color: rgb(187, 0, 0);
   text-align: center;
 }
 
 #drag-n-drop {
   border: 2px dashed rgb(109, 109, 109);
+  width: 100%;
   height: 100%;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   padding: 50px;
   text-align: center;
   text-justify: auto;
-  font: 20pt bold arial;
+  font: 18pt bold arial;
   color: #bbb;
 }
