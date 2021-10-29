@@ -13,3 +13,9 @@ img.onload = function () {
 
 setupFileSelect(fileSelector, img, output, status);
 setupDragNDrop(dragNDropZone, img, output, status);
+
+function downloadImg(el) {
+  // get image URI from canvas object
+  var imageURI = canvas.toDataURL("image/jpg");
+  el.href = imageURI;
+}

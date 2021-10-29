@@ -84,6 +84,10 @@ body {
   margin-bottom: 3vw;
 }
 
+.btn {
+  width: max-content;
+}
+
 #output {
   max-width: 80%;
   max-height: 80%;
