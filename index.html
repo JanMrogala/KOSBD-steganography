@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -7,27 +8,64 @@
     <meta name="description" content="KOSBD steganography project">
     <meta name="author" content="Jan Mrógala">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>KOSBD steganography</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.ico" />
-
     <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
     <link href="css/mystyle.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body class="grey darken-4">
 
-    <h1>My First Heading</h1>
+    <canvas class="hidden" id="myCanvas"></canvas>
 
-    <p>My first paragraph.</p>
+    <div class="area center-div">
+        <div class="center-div img-container" id="drag-n-drop">
+            <p id="drop-files-here">Drop files here<br>
+                (or choose below)
+            </p>
+            <img class="center-img" id="output">
+        </div>
+    </div>
+
+    <form action="#" class="form">
+        <div class="file-field input-field input-file center-div" id="file-desc">
+            <div class="btn">
+                <span>File</span>
+                <input type="file" id="file-selector">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" id="file-path-url" type="text">
+            </div>
+        </div>
+    </form>
 
 
+    <p id="status"></p>
 
-    <p id="debug">debug</p>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" spellcheck="false"></textarea>
+                    <label for="textarea1">Text</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="center">
+        <a class="waves-effect waves-light btn-large">Encode</a>
+        <a class="waves-effect waves-light btn-large">Decode</a>
+    </div>
 
     <script src="libs/materialize/js/materialize.min.js"></script>
-    <script src="js/myscript.js"></script>
+    <script src="js/imageOperations.js"></script>
+    <script src="js/dragNDrop.js"></script>
+    <script src="js/simpleFileSelect.js"></script>
+    <script src="js/pageLogicSetup.js"></script>
 
 </body>
 
