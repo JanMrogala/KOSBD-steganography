@@ -67,11 +67,16 @@ function decodeAction() {
   var decodedMsg = decode(imgData, encodingFormat, NaN);
 
   $("#textarea1").val(decodedMsg);
+  checkLength(textAreaLabel);
   $(document).ready(function () {
     $("#textarea1").focus();
+    $("#textarea1").animate(
+      {
+        scrollTop: 0,
+      },
+      0
+    );
   });
-  M.textareaAutoResize($("#textarea1"));
-  checkLength(textAreaLabel);
 }
 
 function checkLength(el) {
