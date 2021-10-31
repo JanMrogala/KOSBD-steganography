@@ -1,4 +1,4 @@
-function setupDragNDrop(dragNDropZone, trueImage, output, status) {
+function setupDragNDrop(dragNDropZone, trueImage, output, status, fileName) {
   if (window.FileList && window.File) {
     dragNDropZone.addEventListener("dragover", (event) => {
       event.stopPropagation();
@@ -24,6 +24,7 @@ function setupDragNDrop(dragNDropZone, trueImage, output, status) {
       }
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
+        fileName.name = file["name"];
         readImage(file, trueImage, output, status);
 
         var element = document.getElementById("drop-files-here");

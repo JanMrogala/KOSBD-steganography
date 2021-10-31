@@ -1,12 +1,31 @@
 // EVEN NUMBER = 0
 // ODD NUMBER = 1
+const watermark = "KOSBD2021";
 
-function encode(imgData, message, encodingFormat, progressBar) {
+function encode(imgData, message, encodingFormat, status) {
+  if (imgData.width < 3) {
+    status.textContent = "Error: The image width is too small.";
+    return;
+  }
+
+  if (imgData.height < 3) {
+    status.textContent = "Error: The image height is too small.";
+    return;
+  }
+
+  var totalRGBPixels = imgData.width * imgData.height * 3;
+  var binaryLength = Number(totalRGBPixels).toString(2).length;
+
   var encodedMsgInBinary = encodeMessage(message, encodingFormat);
+  var encodedWatermarkInBinary = encodeMessage(watermark, encodingFormat);
+
+  encodeWatermarkToImg(imgData, watermark);
 
   encodeMessageLengthToImg(imgData, encodedMsgInBinary.length);
 
   encodeMessageToImg(imgData, encodedMsgInBinary);
+
+  return true;
 }
 
 function decode(imgData, encodingFormat, progressBar) {
@@ -21,7 +40,7 @@ function decode(imgData, encodingFormat, progressBar) {
   return decodedMsg;
 }
 
-// function addWatermark(imgData, watermarkTxt) {}
+function encodeWatermarkToImg(imgData, wMark) {}
 
 function encodeMessageLengthToImg(imgData, msgLengthBinary) {
   var totalRGBPixels = imgData.width * imgData.height * 3;
@@ -31,8 +50,6 @@ function encodeMessageLengthToImg(imgData, msgLengthBinary) {
   var binaryLengthPadding = binaryPadding(binaryLength);
 
   msgLength = binaryLengthPadding.substr(msgLength.length) + msgLength;
-
-  console.log("msgLength", msgLength, parseInt(msgLength, 2), msgLength.length);
 
   var offset = 0;
   var counter = 1;
@@ -64,13 +81,6 @@ function decodeMessageLengthFromImg(imgData) {
     counter++;
   }
 
-  console.log(
-    "decodeMessageLengthFromImg",
-    msgLengthBinary,
-    parseInt(msgLengthBinary, 2),
-    msgLengthBinary.length
-  );
-
   return parseInt(msgLengthBinary, 2);
 }
 
@@ -79,17 +89,16 @@ function encodeMessageToImg(imgData, binaryMsg) {
   var binaryLength = Number(totalRGBPixels).toString(2).length;
   binaryLength += Math.floor(binaryLength / 3);
 
-  console.log("encode starting index", binaryLength);
-
-  //TODO: encoding must start knowing where alpha channel is, same with decoding
+  var start =
+    binaryLength % 4 == 0 ? binaryLength : binaryLength + (binaryLength % 4);
 
   var offset = 0;
   var counter = 1;
 
-  for (let i = 0; i < binaryMsg.length; i++) {
-    imgData.data[i + binaryLength + offset] += applyOddEvenRule(
-      parseInt(binaryMsg.charAt(i)),
-      imgData.data[i + binaryLength + offset]
+  for (let i = start; i < binaryMsg.length + start; i++) {
+    imgData.data[i + offset] += applyOddEvenRule(
+      parseInt(binaryMsg.charAt(i - start)),
+      imgData.data[i + offset]
     );
     if (counter % 3 == 0) offset++;
     counter++;
@@ -101,21 +110,22 @@ function decodeMessageFromImg(imgData, binaryMsgLength) {
   var binaryLength = Number(totalRGBPixels).toString(2).length;
   binaryLength += Math.floor(binaryLength / 3);
 
-  var decodedMsgInBinary = "";
+  var start =
+    binaryLength % 4 == 0 ? binaryLength : binaryLength + (binaryLength % 4);
 
-  console.log("binaryMsgLength", binaryMsgLength);
+  var decodedMsgInBinary = "";
 
   var offset = 0;
   var counter = 1;
 
-  for (let i = binaryLength; i < binaryMsgLength + binaryLength; i++) {
+  for (let i = start; i < binaryMsgLength + start; i++) {
     decodedMsgInBinary = decodedMsgInBinary.concat(
       getBitByOddEvenRule(imgData.data[i + offset]).toString()
     );
     if (counter % 3 == 0) offset++;
     counter++;
   }
-  console.log("decoded msg length", decodedMsgInBinary.length);
+
   return decodedMsgInBinary;
 }
 

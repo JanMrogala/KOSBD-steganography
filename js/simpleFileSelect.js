@@ -1,4 +1,4 @@
-function setupFileSelect(fileSelector, trueImage, output, status) {
+function setupFileSelect(fileSelector, trueImage, output, status, fileName) {
   if (window.FileList && window.File && window.FileReader) {
     fileSelector.addEventListener("change", (event) => {
       const file = event.target.files[0];
@@ -15,6 +15,7 @@ function setupFileSelect(fileSelector, trueImage, output, status) {
       }
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
+        fileName.name = file["name"];
         readImage(file, trueImage, output, status);
 
         var element = document.getElementById("drop-files-here");

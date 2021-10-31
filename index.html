@@ -51,15 +51,15 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea" spellcheck="false"></textarea>
-                    <label for="textarea1" id="textareaLabel">Text</label>
+                    <textarea id="textarea1" class="materialize-textarea" rows="5" spellcheck="false" oninput="checkLength(this)" disabled></textarea>
+                    <label for="textarea1" id="textareaLabel" disabled>Text</label>
                 </div>
             </div>
         </form>
     </div>
 
     <div class="center">
-        <a class="waves-effect waves-light btn-large" id="encode" href="" onclick="encodeAction(this);">Encode</a>
+        <a class="waves-effect waves-light btn-large" id="encode" onclick="encodeAction(this);">Encode</a>
         <a class="waves-effect waves-light btn-large" id="decode" onclick="decodeAction();">Decode</a>
     </div>
 
