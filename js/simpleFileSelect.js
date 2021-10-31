@@ -15,7 +15,7 @@ function setupFileSelect(fileSelector, trueImage, output, status) {
       }
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
-        readImage(file, img, output, status);
+        readImage(file, trueImage, output, status);
 
         var element = document.getElementById("drop-files-here");
         if (typeof element != "undefined" && element != null) {

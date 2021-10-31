@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
     <link href="css/mystyle.css" rel="stylesheet">
 
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body class="grey darken-4">
@@ -50,20 +52,19 @@
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="textarea1" class="materialize-textarea" spellcheck="false"></textarea>
-                    <label for="textarea1">Text</label>
+                    <label for="textarea1" id="textareaLabel">Text</label>
                 </div>
             </div>
         </form>
     </div>
 
-    <a id="download" download="myImage.jpg" href="" onclick="downloadImg(this);">Download to myImage.jpg</a>
-
     <div class="center">
-        <a class="waves-effect waves-light btn-large" onclick="encode">Encode</a>
-        <a class="waves-effect waves-light btn-large" onclick="decode">Decode</a>
+        <a class="waves-effect waves-light btn-large" id="encode" href="" onclick="encodeAction(this);">Encode</a>
+        <a class="waves-effect waves-light btn-large" id="decode" onclick="decodeAction();">Decode</a>
     </div>
 
     <script src="libs/materialize/js/materialize.min.js"></script>
+    <script src="js/steganography.js"></script>
     <script src="js/imageOperations.js"></script>
     <script src="js/dragNDrop.js"></script>
     <script src="js/simpleFileSelect.js"></script>

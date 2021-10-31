@@ -13,7 +13,7 @@ function readImage(file, img, output, status) {
   reader.readAsDataURL(file);
 }
 
-function imageManipulation(canvasContext) {
+function drawImage(canvasContext, img) {
   var w = img.width;
   var h = img.height;
 
@@ -27,6 +27,4 @@ function imageManipulation(canvasContext) {
 
   canvasContext.clearRect(0, 0, w, h);
   canvasContext.drawImage(img, 0, 0);
-
-  console.log(imgData.data);
 }
