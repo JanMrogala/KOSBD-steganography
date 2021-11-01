@@ -1,5 +1,7 @@
 # KOSBD-steganography
 
+![page look](resources/images/page_look.png)
+
 ## Návod (basic flow):
 
 - Obrázek uživatel načte tím, že jej zvolí buď pomocí tlačítka _SELECT IMAGE_, nebo přetažením souboru do vyznačené _drag-n-drop_ oblasti.
@@ -14,8 +16,11 @@
 # Princip zakódování textu do obrázku:
 
 Jelikož se snažíme o co nejmenší narušení vzhledu obrázku, je třeba vymyslet šetrný způsob, jak informaci zakódovat. To, že je informace zakódována v binárním tvaru, nám umožňuje vymyslet jednoduché pravidlo, podle kterého dokážeme konkrétní bit zakódovat i dekódovat.
+
 Nabízí se možnost pracovat se **sudými** a **lichými** čísly. Řekněme, že sudé číslo pro nás bude reprezentovat bit _0_ a liché bit _1_. Na základě tohoto pravidla již není problém _reprezentovat_ bit v konkrétní číselné hodnotě v obrázku. Mějme například hodnotu kanálu RGB 200 0 41. Pokud bychom použili zmíněné pravidlo, tak z tohoto pixelu přečteme bitovou sekvenci _001_. Znamená to, že k vložení bitu do čísla, nám stačí dané číslo změnit pouze o _1_, respektive občas jej vůbec měnit nemusíme. Takto dokážeme zakódovat binární reprezentaci zprávy do obrázku.
+
 Ovšem k dekódování zprávy nám chybí znalost o její délce. Nechceme dekódovat celý _velký_ obrázek, když zpráva se nachází např. v prvních 100 pixelech. To znamená, že do obrázku zakódujeme také informaci o její délce. Tato informace se bude vždy nacházet na začátku obrázku a _její_ délku zjistíme tak, že vezmeme celkový počet pixelů ( 3(kanály) x výška x šířka obrázku, tato informace je nám vždy známa), a toto číslo vyjádříme binárně. Následně stačí vzít délku tohoto binárního čísla a do tohoto rozsahu vložit informaci o velikosti zakódované zprávy.
+
 Pomocí výše zmíněných pravidel jsme schopni zakódovat zprávu. Možným vylepšením tohoto programu by mohlo být přidání sekvence znaků, podle kterých bychom byli schopni identifikovat, který obrázek zprávu obsahuje, a který ne. V tuhle chvíli je možné _dekódovat_ jakýkoli obrázek a je na uživateli aby poznal, zda je dekódovaný text pouze náhodným pomícháním znaků, či se jedná o plnohodnotnou zprávu.
 
 ## Dokumentace zásadních funkcí v programu
