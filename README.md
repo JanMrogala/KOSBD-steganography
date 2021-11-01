@@ -1,5 +1,7 @@
 # KOSBD-steganography
 
+![page look](resources/images/page_look.png)
+
 ## Návod (basic flow):
 
 - Obrázek uživatel načte tím, že jej zvolí buď pomocí tlačítka _SELECT IMAGE_, nebo přetažením souboru do vyznačené _drag-n-drop_ oblasti.
