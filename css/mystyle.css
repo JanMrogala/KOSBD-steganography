@@ -54,11 +54,6 @@ body {
   max-width: 60vw;
 }
 
-.drag-n-drop-zone {
-  width: 40vw;
-  height: 25vw;
-}
-
 .area {
   width: 35vw;
   height: 20vw;
@@ -109,10 +104,8 @@ body {
   height: 100%;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  padding: 50px;
   text-align: center;
-  text-justify: auto;
-  font: 18pt bold arial;
+  font: 1.6vw bold arial;
   color: #bbb;
 }
 
