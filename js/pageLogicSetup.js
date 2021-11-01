@@ -29,7 +29,6 @@ img.onload = function () {
 
   textAreaLabel.innerHTML = "(" + 0 + "/" + maxMsgLength + " bytes)";
 
-  textArea.disabled = false;
   textArea.value = "";
   codable = true;
 };
