@@ -1,7 +1,7 @@
 # KOSBD-steganography
 
 ![page look](resources/images/page_look.png)
-
+</br></br>
 ## Návod (basic flow):
 
 - Obrázek uživatel načte tím, že jej zvolí buď pomocí tlačítka _SELECT IMAGE_, nebo přetažením souboru do vyznačené _drag-n-drop_ oblasti.
@@ -12,7 +12,7 @@
   - _pozn._ Program algoritmicky nezjišťuje, zda obrázek obsahuje zakódovanou zprávu, či nikoli. Uživatel musí určit, zda dekódovaná zpráva dává smysl.
   - Uživatel potvrzuje dekódování tlačítkem _DECODE_.
   - V textové oblasti pod obrázkem se objeví dekódovaný text.
-
+</br></br>
 # Princip zakódování textu do obrázku:
 
 Jelikož se snažíme o co nejmenší narušení vzhledu obrázku, je třeba vymyslet šetrný způsob, jak informaci zakódovat. To, že je informace zakódována v binárním tvaru, nám umožňuje vymyslet jednoduché pravidlo, podle kterého dokážeme konkrétní bit zakódovat i dekódovat.
@@ -22,7 +22,7 @@ Nabízí se možnost pracovat se **sudými** a **lichými** čísly. Řekněme, 
 Ovšem k dekódování zprávy nám chybí znalost o její délce. Nechceme dekódovat celý _velký_ obrázek, když zpráva se nachází např. v prvních 100 pixelech. To znamená, že do obrázku zakódujeme také informaci o její délce. Tato informace se bude vždy nacházet na začátku obrázku a _její_ délku zjistíme tak, že vezmeme celkový počet pixelů ( 3(kanály) x výška x šířka obrázku, tato informace je nám vždy známa), a toto číslo vyjádříme binárně. Následně stačí vzít délku tohoto binárního čísla a do tohoto rozsahu vložit informaci o velikosti zakódované zprávy.
 
 Pomocí výše zmíněných pravidel jsme schopni zakódovat zprávu. Možným vylepšením tohoto programu by mohlo být přidání sekvence znaků, podle kterých bychom byli schopni identifikovat, který obrázek zprávu obsahuje, a který ne. V tuhle chvíli je možné _dekódovat_ jakýkoli obrázek a je na uživateli aby poznal, zda je dekódovaný text pouze náhodným pomícháním znaků, či se jedná o plnohodnotnou zprávu.
-
+</br></br>
 ## Dokumentace zásadních funkcí v programu
 
 funkce _encodeMessageLengthToImg_ se stará o zakódování informace o délce zprávy do obrázku.
@@ -53,7 +53,7 @@ funkce _encodeMessageLengthToImg_ se stará o zakódování informace o délce z
       }
     }
 ```
-
+</br></br></br>
 funkce _decodeMessageLengthFromImg_ se stará o dekódování informace o délce zprávy z obrázku.
 
 - **vstup:** obrazové data
@@ -80,7 +80,7 @@ funkce _decodeMessageLengthFromImg_ se stará o dekódování informace o délce
       return parseInt(msgLengthBinary, 2);
     }
 ```
-
+</br></br></br>
 funkce _encodeMessageToImg_ se stará o zakódování textu do obrázku.
 
 - **vstup:** obrazové data, zpráva v binárním tvaru
@@ -108,7 +108,7 @@ funkce _encodeMessageToImg_ se stará o zakódování textu do obrázku.
       }
     }
 ```
-
+</br></br></br>
 funkce _decodeMessageFromImg_ se stará o dekódování textu z obrázku.
 
 - **vstup:** obrazové data, délka zprávy v binárním tvaru
@@ -139,7 +139,7 @@ funkce _decodeMessageFromImg_ se stará o dekódování textu z obrázku.
       return decodedMsgInBinary;
     }
 ```
-
+</br></br></br>
 funkce _encodeMessage_ se stará o zakódování textu.
 
 - **vstup:** zpráva, kódovací formát (utf-8)
@@ -155,7 +155,7 @@ funkce _encodeMessage_ se stará o zakódování textu.
       return binaryStr;
     }
 ```
-
+</br></br></br>
 funkce _decodeMessage_ se stará o dekódování textu.
 
 - **vstup:** zakódovaná zpráva, kódovací formát (utf-8)
@@ -167,7 +167,7 @@ funkce _decodeMessage_ se stará o dekódování textu.
       return decoder.decode(encodedMsg);
     }
 ```
-
+</br></br></br>
 funkce _applyOddEvenRule_ se stará o aplikaci pravidla zakódování bitu do sudého/lichého čísla.
 
 - **vstup:** vstupní bit (0/1), vstupní celé číslo (0 - 255)
@@ -184,7 +184,7 @@ funkce _applyOddEvenRule_ se stará o aplikaci pravidla zakódování bitu do su
       }
     }
 ```
-
+</br></br></br>
 funkce _getBitByOddEvenRule_ se stará o získání bitu z čísla na základě pravidla s lichými/sudými čísly.
 
 - **vstup:** číslo (0 - 255)
